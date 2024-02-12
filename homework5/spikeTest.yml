@@ -3,9 +3,15 @@
 config:
   target: "https://postman-echo.com"
   phases:
-    - duration: 1
-      arrivalRate: 1
-      name: Artillery First Test
+    - duration: 30
+      arrivalRate: 2
+      name: Spike-pre Warm-Up
+    - duration: 10
+      arrivalRate: 20
+      name: Spike test
+    - duration: 30
+      arrivalRate: 2
+      name: Spike-post Cool-down
 scenarios:
   - name: Getting a resource
     flow:
@@ -14,8 +20,8 @@ scenarios:
       - post:
           url: "{{ target }}post"
           json:
-            username: "Test User"
-            password: "Temp Password"
+            foo1: "bar1"
+            foo2: "bar2"
           capture:
             - json: "$.json"
               as: "request_body"
