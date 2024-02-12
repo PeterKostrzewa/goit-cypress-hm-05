@@ -14,8 +14,8 @@ config:
     -
       path: "keywords.csv"
       fields:
-        - "User Name"
-        - "User Age"
+        - "UserName"
+        - "UserAge"
       order: sequence
   plugins:
     ensure: {}
@@ -29,12 +29,12 @@ scenarios:
   - name: Getting a resource
     flow:
       - get:
-          url: "{{ target }}/get?param1={{ **User Name** }}"
+          url: "{{ target }}/get?param1={{ **UserName** }}"
       - post:
-          url: "{{ target }}/post?param2={{ **User Age** }}"
+          url: "{{ target }}/post?param2={{ **UserAge** }}"
           json:
-            randomUserName: "User Name"
-            randomUserAge: "User Age"
+            userName: "{{UserName}}"
+            userAge: "{{UserAge}}"
           capture:
             - json: "$.json"
               as: "request_body"
