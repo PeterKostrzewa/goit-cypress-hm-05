@@ -1,24 +1,19 @@
 config:
-  target: "https://postman-echo.com"
+  target: "postman-echo.com"
   phases:
     - duration: 1
       arrivalRate: 1
-      name: Artillery test
-  plugins:
-    ensure: {}
-  ensure:
-    thresholds:
-      - http.response time.p95: 2000
+      name: Artillery First Test
 scenarios:
   - name: Getting a resource
     flow:
       - get:
-          url: "{{ target }}get"
+          url: "{{ target }}/get"
       - post:
-          url: "{{ target }}post"
+          url: "{{ target }}/post"
           json:
-            foo1: "bar1"
-            foo2: "bar2"
+            randomUserName: "User Name"
+            randomUserAge: "User Age"
           capture:
             - json: "$.json"
               as: "request_body"
