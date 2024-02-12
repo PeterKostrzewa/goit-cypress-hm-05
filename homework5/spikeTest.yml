@@ -1,17 +1,14 @@
-
-
 config:
   target: "https://postman-echo.com"
   phases:
-    - duration: 30
-      arrivalRate: 2
-      name: Spike-pre Warm-Up
-    - duration: 10
-      arrivalRate: 20
-      name: Spike test
-    - duration: 30
-      arrivalRate: 2
-      name: Spike-post Cool-down
+    - duration: 1
+      arrivalRate: 1
+      name: Artillery test
+  plugins:
+    ensure: {}
+  ensure:
+    thresholds:
+      - http.response time.p95: 2000
 scenarios:
   - name: Getting a resource
     flow:
